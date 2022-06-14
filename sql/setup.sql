@@ -8,7 +8,8 @@ DROP TABLE IF EXISTS authors_books CASCADE;
 CREATE TABLE authors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
     first_name VARCHAR, 
-    last_name VARCHAR
+    last_name VARCHAR,
+    birth_date DATE NOT NULL
 );
 
 CREATE TABLE books (
@@ -26,11 +27,12 @@ CREATE TABLE authors_books (
 
 INSERT INTO authors(
     first_name, 
-    last_name
+    last_name,
+    birth_date
 )
 VALUES
-('Brandon', 'Sanderson'),
- ('Stephen', 'King')
+('Brandon', 'Sanderson', '1975-12-19'),
+ ('Stephen', 'King', '1947-09-21')
  ;
 
 INSERT INTO books (
