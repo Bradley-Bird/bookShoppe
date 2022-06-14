@@ -13,7 +13,19 @@ describe('authors routes', () => {
   });
   it('displays author by id, with books', async () => {
     const res = await request(app).get('/authors/1');
-    expect(res.body.length).toEqual(2);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      first_name: expect.any(String),
+      last_name: expect.any(String),
+      birth_date: expect.any(String),
+
+      books: expect.arrayContaining([
+        {
+          id: expect.any(Number),
+          title: expect.any(String),
+        },
+      ]),
+    });
   });
   afterAll(() => {
     pool.end();
