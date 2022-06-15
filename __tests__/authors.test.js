@@ -27,6 +27,18 @@ describe('authors routes', () => {
       ]),
     });
   });
+  it('should add a new author', async () => {
+    const res = await request(app).post('/authors').send({
+      first_name: 'Frank',
+      last_name: 'Herbert',
+      birth_date: '1920-10-08',
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.first_name).toBe('Frank');
+    expect(res.body.last_name).toBe('Herbert');
+    expect(res.body.birth_date).toBe('1920-10-08T08:00:00.000Z');
+  });
+
   afterAll(() => {
     pool.end();
   });
