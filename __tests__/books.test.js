@@ -26,6 +26,13 @@ describe('book routes', () => {
       ]),
     });
   });
+  it('should add a new author', async () => {
+    const res = await request(app).post('/books').send({
+      title: 'Hitchhikers Guide to the Galaxy',
+    });
+    expect(res.status).toBe(200);
+    expect(res.body.title).toBe('Hitchhikers Guide to the Galaxy');
+  });
   afterAll(() => {
     pool.end();
   });
